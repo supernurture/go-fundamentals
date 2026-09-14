@@ -1,0 +1,2 @@
+# .gitignore ignores everything listed below so that it is not committed.
+*.exe

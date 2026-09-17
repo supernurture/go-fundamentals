@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/supernurture/go-fundamentals/internal/embed"
 )
@@ -9,6 +10,13 @@ import (
 func main() {
 	fmt.Println(string(embed.Note))
 	fmt.Println(embed.HW)
+
+	// can be used to migrate SQL scripts.
+	content, err := embed.UserScript.ReadFile("00001-auth.sql")
+	if err != nil {
+		log.Fatalf("unable to read embed: %s", err.Error())
+	}
+	fmt.Println(string(content))
 }
 
 // go build 					- go-fundamentals.exe

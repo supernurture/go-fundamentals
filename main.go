@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"github.com/supernurture/go-fundamentals/internal/embed"
+	ex "github.com/supernurture/go-fundamentals/internal/exercises"
 )
 
 func main() {
@@ -17,6 +18,33 @@ func main() {
 		log.Fatalf("unable to read embed: %s", err.Error())
 	}
 	fmt.Println(string(content))
+
+	fmt.Println("===================")
+
+	fmt.Println(ex.FizzBuzz(3))
+	fmt.Println(ex.FizzBuzz(5))
+	fmt.Println(ex.FizzBuzz(15))
+
+	fmt.Println("===================")
+
+	fmt.Println(ex.TwoSum([]int{2, 7, 11, 15}, 9))
+	fmt.Println(ex.TwoSum([]int{3, 2, 4}, 6))
+	fmt.Println(ex.TwoSum([]int{3, 3}, 6))
+	fmt.Println(ex.TwoSum([]int{-1, -2, -3, -4, -5}, -8))
+
+	fmt.Println("===================")
+
+	helloChars := []string{"h", "e", "l", "l", "o"}
+	ex.ReverseString(helloChars)
+	fmt.Println(helloChars)
+
+	nameChars := []string{"H", "a", "n", "n", "a", "h"}
+	ex.ReverseString(nameChars)
+	fmt.Println(nameChars)
+
+	char := []string{"a"}
+	ex.ReverseString(char)
+	fmt.Println(char)
 }
 
 // go build 					- go-fundamentals.exe

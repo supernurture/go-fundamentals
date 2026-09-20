@@ -1,0 +1,1 @@
+// This file was created using the command "go run main.go 2> hasil2.txt".

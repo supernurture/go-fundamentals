@@ -1,0 +1,33 @@
+// This file was created using the command "go run main.go > hasil.txt".
+
+Note from our friend.
+Hello world from South Jakarta, Indonesia.
+-- PostgreSQL
+
+CREATE TABLE IF NOT EXISTS users (
+    user_id     SERIAL PRIMARY KEY,
+    name        VARCHAR(50),
+    age         INTEGER
+);
+
+-- Used to add a new column.
+ALTER TABLE users ADD       COLUMN place_of_birth TEXT;
+
+-- Used to change the data type of a column.
+ALTER TABLE users ALTER     COLUMN place_of_birth TYPE VARCHAR(100);
+
+-- Used to delete a column.
+ALTER TABLE users DROP      COLUMN place_of_birth;
+===================
+[1 2 Fizz]
+[1 2 Fizz 4 Buzz]
+[1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz]
+===================
+[0 1]
+[1 2]
+[0 1]
+[2 4]
+===================
+[o l l e h]
+[h a n n a H]
+[a]

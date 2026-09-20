@@ -6,6 +6,9 @@ import (
 
 	"github.com/supernurture/go-fundamentals/internal/embed"
 	ex "github.com/supernurture/go-fundamentals/internal/exercises"
+
+	"github.com/rs/zerolog"
+	zg "github.com/rs/zerolog/log"
 )
 
 func main() {
@@ -45,6 +48,12 @@ func main() {
 	char := []string{"a"}
 	ex.ReverseString(char)
 	fmt.Println(char)
+
+	fmt.Println("===================")
+
+	zerolog.TimeFieldFormat = zerolog.TimeFormatUnix
+	zg.Print("zerolog test")
+	zg.Debug().Str("Name", "Steve").Int("Age", 28).Msg("Information")
 }
 
 // go build 					- go-fundamentals.exe

@@ -1,6 +1,10 @@
 package exercises
 
-import "fmt"
+import (
+	"fmt"
+	"slices"
+	"strings"
+)
 
 func FizzBuzz(n int) []string {
 	if n < 1 {
@@ -44,4 +48,17 @@ func ReverseString(v []string) {
 	for x, y := 0, len(v)-1; x < y; x, y = x+1, y-1 {
 		v[x], v[y] = v[y], v[x]
 	}
+}
+
+func ValidAnagram(a, b string) bool {
+	if len(strings.Split(a, "")) != len(strings.Split(b, "")) {
+		return false
+	}
+
+	sortedA := []rune(a)
+	sortedB := []rune(b)
+	slices.Sort(sortedA)
+	slices.Sort(sortedB)
+
+	return string(sortedA) == string(sortedB)
 }

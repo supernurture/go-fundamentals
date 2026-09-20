@@ -54,6 +54,13 @@ func main() {
 	zerolog.TimeFieldFormat = zerolog.TimeFormatUnix
 	zg.Print("zerolog test")
 	zg.Debug().Str("Name", "Steve").Int("Age", 28).Msg("Information")
+
+	fmt.Println("===================")
+
+	zg.Info().Bool("Result", ex.ValidAnagram("anagram", "nagaram")).Msg("Valid Anagram")
+	zg.Info().Bool("Result", ex.ValidAnagram("listen", "silent")).Msg("Valid Anagram")
+	zg.Info().Bool("Result", ex.ValidAnagram("car", "rat")).Msg("Valid Anagram")
+	zg.Info().Bool("Result", ex.ValidAnagram("a", "ab")).Msg("Valid Anagram")
 }
 
 // go build 					- go-fundamentals.exe

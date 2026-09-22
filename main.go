@@ -6,6 +6,7 @@ import (
 
 	"github.com/supernurture/go-fundamentals/internal/embed"
 	ex "github.com/supernurture/go-fundamentals/internal/exercises"
+	"github.com/supernurture/go-fundamentals/internal/interfaces"
 
 	"github.com/rs/zerolog"
 	zg "github.com/rs/zerolog/log"
@@ -61,6 +62,17 @@ func main() {
 	zg.Info().Bool("Result", ex.ValidAnagram("listen", "silent")).Msg("Valid Anagram")
 	zg.Info().Bool("Result", ex.ValidAnagram("car", "rat")).Msg("Valid Anagram")
 	zg.Info().Bool("Result", ex.ValidAnagram("a", "ab")).Msg("Valid Anagram")
+
+	fmt.Println("===================")
+	xendit := interfaces.Xendit{Balance: 4.00}
+	midtrans := interfaces.Midtrans{Balance: 8.00}
+
+	if err := interfaces.Checkout(&xendit, 2.00); err != nil {
+		zg.Err(err).Msg("checkout failed")
+	}
+	if err := interfaces.Checkout(&midtrans, 10.00); err != nil {
+		zg.Err(err).Msg("checkout failed")
+	}
 }
 
 // go build 					- go-fundamentals.exe

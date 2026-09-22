@@ -2,6 +2,7 @@ package exercises
 
 import (
 	"fmt"
+	"regexp"
 	"slices"
 	"strings"
 )
@@ -61,4 +62,20 @@ func ValidAnagram(a, b string) bool {
 	slices.Sort(sortedB)
 
 	return string(sortedA) == string(sortedB)
+}
+
+func ValidPalindrome(s string) bool {
+	if strings.TrimSpace(s) == "" {
+		return true
+	}
+	sanitator := regexp.MustCompile("[^a-zA-z0-9]")
+	// Convert the characters to lowercase and then sanitize them.
+	sanitizedS := sanitator.ReplaceAllString(strings.ToLower(s), "")
+
+	for x, y := 0, len(sanitizedS)-1; x < y; x, y = x+1, y-1 {
+		if sanitizedS[x] != sanitizedS[y] {
+			return false
+		}
+	}
+	return true
 }

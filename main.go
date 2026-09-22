@@ -73,6 +73,12 @@ func main() {
 	if err := interfaces.Checkout(&midtrans, 10.00); err != nil {
 		zg.Err(err).Msg("checkout failed")
 	}
+
+	fmt.Println("===================")
+	zg.Info().Bool("Result", ex.ValidPalindrome("A man, a plan, a canal: Panama")).Msg("Valid Palindrome")
+	zg.Info().Bool("Result", ex.ValidPalindrome("race a car")).Msg("Valid Palindrome")
+	zg.Info().Bool("Result", ex.ValidPalindrome(" ")).Msg("Valid Palindrome")
+	zg.Info().Bool("Result", ex.ValidPalindrome("0P")).Msg("Valid Palindrome")
 }
 
 // go build 					- go-fundamentals.exe

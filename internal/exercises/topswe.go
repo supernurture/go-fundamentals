@@ -52,7 +52,7 @@ func ReverseString(v []string) {
 }
 
 func ValidAnagram(a, b string) bool {
-	if len(strings.Split(a, "")) != len(strings.Split(b, "")) {
+	if len([]rune(a)) != len([]rune(b)) {
 		return false
 	}
 
@@ -68,7 +68,7 @@ func ValidPalindrome(s string) bool {
 	if strings.TrimSpace(s) == "" {
 		return true
 	}
-	sanitator := regexp.MustCompile("[^a-zA-z0-9]")
+	sanitator := regexp.MustCompile("[^a-zA-Z0-9]")
 	// Convert the characters to lowercase and then sanitize them.
 	sanitizedS := sanitator.ReplaceAllString(strings.ToLower(s), "")
 
@@ -78,4 +78,26 @@ func ValidPalindrome(s string) bool {
 		}
 	}
 	return true
+}
+
+func LongestCommonPrefix(strs []string) string {
+	if len(strs) == 0 {
+		return ""
+	}
+
+	if len(strs) == 1 {
+		return strs[0]
+	}
+
+	for k, v := range strs[0] {
+		for _, v2 := range strs[1:] {
+			if len(v2)-1 < k || v != rune(v2[k]) {
+				return strs[0][:k]
+			}
+		}
+		if len(strs[0])-1 == k {
+			return strs[0]
+		}
+	}
+	return ""
 }

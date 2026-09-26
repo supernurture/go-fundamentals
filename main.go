@@ -79,6 +79,12 @@ func main() {
 	zg.Info().Bool("Result", ex.ValidPalindrome("race a car")).Msg("Valid Palindrome")
 	zg.Info().Bool("Result", ex.ValidPalindrome(" ")).Msg("Valid Palindrome")
 	zg.Info().Bool("Result", ex.ValidPalindrome("0P")).Msg("Valid Palindrome")
+
+	fmt.Println("===================")
+	zg.Info().Str("Result", ex.LongestCommonPrefix([]string{"flower", "flow", "flight"})).Msg("Longest Common Prefix")
+	zg.Info().Str("Result", ex.LongestCommonPrefix([]string{"dog", "racecar", "car"})).Msg("Longest Common Prefix")
+	zg.Info().Str("Result", ex.LongestCommonPrefix([]string{"interspecies", "interstellar", "interstate"})).Msg("Longest Common Prefix")
+	zg.Info().Str("Result", ex.LongestCommonPrefix([]string{"alone"})).Msg("Longest Common Prefix")
 }
 
 // go build 					- go-fundamentals.exe

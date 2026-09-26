@@ -85,6 +85,11 @@ func main() {
 	zg.Info().Str("Result", ex.LongestCommonPrefix([]string{"dog", "racecar", "car"})).Msg("Longest Common Prefix")
 	zg.Info().Str("Result", ex.LongestCommonPrefix([]string{"interspecies", "interstellar", "interstate"})).Msg("Longest Common Prefix")
 	zg.Info().Str("Result", ex.LongestCommonPrefix([]string{"alone"})).Msg("Longest Common Prefix")
+
+	name := "Steve Ben"
+	zg.Info().Str("Result", name[1:]).Msg("This cut version will include characters from the 1st index to the last.")
+	zg.Info().Str("Result", name[:5]).Msg("This sliced version will include characters from index 0 to index 4.")
+
 }
 
 // go build 					- go-fundamentals.exe

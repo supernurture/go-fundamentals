@@ -33,7 +33,7 @@ func TwoSum(nums []int, target int) []int {
 	}
 
 	seen := make(map[int]int, len(nums))
-	for x := 0; x < len(nums); x++ {
+	for x := range nums {
 		if v, ok := seen[target-nums[x]]; ok {
 			return []int{v, x}
 		}

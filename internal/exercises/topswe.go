@@ -2,9 +2,9 @@ package exercises
 
 import (
 	"fmt"
+	"math/bits"
 	"regexp"
 	"slices"
-	"strconv"
 	"strings"
 )
 
@@ -114,6 +114,5 @@ func PowerOfThree(n int) bool {
 }
 
 func NumberOfSetBits(n int) int {
-	bin := strconv.FormatInt(int64(n), 2)
-	return strings.Count(bin, "1")
+	return bits.OnesCount(uint(n))
 }

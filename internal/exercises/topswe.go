@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"regexp"
 	"slices"
+	"strconv"
 	"strings"
 )
 
@@ -110,4 +111,9 @@ func PowerOfThree(n int) bool {
 		n /= 3
 	}
 	return n == 1
+}
+
+func NumberOfSetBits(n int) int {
+	bin := strconv.FormatInt(int64(n), 2)
+	return strings.Count(bin, "1")
 }

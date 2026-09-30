@@ -90,6 +90,11 @@ func main() {
 	zg.Info().Str("Result", name[1:]).Msg("This cut version will include characters from the 1st index to the last.")
 	zg.Info().Str("Result", name[:5]).Msg("This sliced version will include characters from index 0 to index 4.")
 
+	fmt.Println("===================")
+	zg.Info().Int("Result", ex.NumberOfSetBits(11)).Msg("Number Of Set Bits")
+	zg.Info().Int("Result", ex.NumberOfSetBits(128)).Msg("Number Of Set Bits")
+	zg.Info().Int("Result", ex.NumberOfSetBits(2147483645)).Msg("Number Of Set Bits")
+	zg.Info().Int("Result", ex.NumberOfSetBits(0)).Msg("Number Of Set Bits")
 }
 
 // go build 					- go-fundamentals.exe

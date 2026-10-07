@@ -38,6 +38,9 @@ type Xendit struct {
 	Balance float64
 }
 
+// Used to ensure that Xendit implements the Payer interface at compile time.
+var _ Payer = (*Xendit)(nil)
+
 func (x *Xendit) Pay(amount float64) error {
 	if x.Balance < amount {
 		return fmt.Errorf("an error occurred: %s", "Insufficient Balance")
@@ -50,6 +53,9 @@ func (x *Xendit) Pay(amount float64) error {
 type Midtrans struct {
 	Balance float64
 }
+
+// Used to ensure that Midtrans implements the Payer interface at compile time.
+var _ Payer = (*Midtrans)(nil)
 
 func (m *Midtrans) Pay(amount float64) error {
 	if m.Balance < amount {

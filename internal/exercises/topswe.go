@@ -116,3 +116,17 @@ func PowerOfThree(n int) bool {
 func NumberOfSetBits(n int) int {
 	return bits.OnesCount(uint(n))
 }
+
+func RangeSumQuery(nums []int, queries [][]int) []int {
+	prefixs := make([]int, len(nums)+1)
+	for k, v := range nums {
+		prefixs[k+1] = prefixs[k] + v
+	}
+
+	result := []int{}
+	for _, v := range queries {
+		add := prefixs[v[1]+1] - prefixs[v[0]]
+		result = append(result, add)
+	}
+	return result
+}

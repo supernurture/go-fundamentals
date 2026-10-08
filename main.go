@@ -64,15 +64,21 @@ func main() {
 	zg.Info().Bool("Result", ex.ValidAnagram("a", "ab")).Msg("Valid Anagram")
 
 	fmt.Println("===================")
-	xendit := interfaces.Xendit{Balance: 4.00}
-	midtrans := interfaces.Midtrans{Balance: 8.00}
+	custBalance := 40000.00
+	xendit := interfaces.Xendit{}
+	midtrans := interfaces.Midtrans{}
 
-	if err := interfaces.Checkout(&xendit, 2.00); err != nil {
+	if err := interfaces.Checkout(&xendit, &custBalance, 2000.00); err != nil {
 		zg.Err(err).Msg("checkout failed")
 	}
-	if err := interfaces.Checkout(&midtrans, 10.00); err != nil {
+
+	zg.Info().Float64("Balance", custBalance).Msg("The remaining Balance")
+
+	if err := interfaces.Checkout(&midtrans, &custBalance, 10000.00); err != nil {
 		zg.Err(err).Msg("checkout failed")
 	}
+
+	zg.Info().Float64("Balance", custBalance).Msg("The remaining Balance")
 
 	fmt.Println("===================")
 	zg.Info().Bool("Result", ex.ValidPalindrome("A man, a plan, a canal: Panama")).Msg("Valid Palindrome")

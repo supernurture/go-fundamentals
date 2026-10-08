@@ -31,41 +31,39 @@ import (
 */
 
 type Payer interface {
-	Pay(amount float64) error
+	Pay(balance *float64, amount float64) error
 }
 
 type Xendit struct {
-	Balance float64
 }
 
 // Used to ensure that Xendit implements the Payer interface at compile time.
 var _ Payer = (*Xendit)(nil)
 
-func (x *Xendit) Pay(amount float64) error {
-	if x.Balance < amount {
+func (x *Xendit) Pay(balance *float64, amount float64) error {
+	if *balance < amount {
 		return fmt.Errorf("an error occurred: %s", "Insufficient Balance")
 	}
-	x.Balance -= amount
+	*balance -= amount
 	zg.Info().Msg("Payment successful via Xendit")
 	return nil
 }
 
 type Midtrans struct {
-	Balance float64
 }
 
 // Used to ensure that Midtrans implements the Payer interface at compile time.
 var _ Payer = (*Midtrans)(nil)
 
-func (m *Midtrans) Pay(amount float64) error {
-	if m.Balance < amount {
+func (m *Midtrans) Pay(balance *float64, amount float64) error {
+	if *balance < amount {
 		return fmt.Errorf("an error occurred: %s", "Insufficient Balance")
 	}
-	m.Balance -= amount
+	*balance -= amount
 	zg.Info().Msg("Payment successful via Midtrans")
 	return nil
 }
 
-func Checkout(payer Payer, amount float64) error {
-	return payer.Pay(amount)
+func Checkout(payer Payer, balance *float64, amount float64) error {
+	return payer.Pay(balance, amount)
 }

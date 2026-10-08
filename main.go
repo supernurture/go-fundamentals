@@ -105,6 +105,13 @@ func main() {
 	fmt.Println("===================")
 	zg.Info().Ints("Result", ex.RangeSumQuery([]int{-2, 0, 3, -5, 2, -1}, [][]int{{0, 2}, {2, 5}, {0, 5}})).Msg("Range Sum Query")
 	zg.Info().Ints("Result", ex.RangeSumQuery([]int{1, 2, 3, 4}, [][]int{{1, 3}, {0, 0}})).Msg("Range Sum Query")
+
+	fmt.Println("===================")
+	zg.Info().Int("Result", ex.FibonacciNumber(0)).Msg("Fibonacci Number")
+	zg.Info().Int("Result", ex.FibonacciNumber(1)).Msg("Fibonacci Number")
+	zg.Info().Int("Result", ex.FibonacciNumber(4)).Msg("Fibonacci Number")
+	zg.Info().Int("Result", ex.FibonacciNumber(10)).Msg("Fibonacci Number")
+	zg.Info().Int("Result", ex.FibonacciNumber(30)).Msg("Fibonacci Number")
 }
 
 // go build 					- go-fundamentals.exe

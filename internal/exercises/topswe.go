@@ -130,3 +130,17 @@ func RangeSumQuery(nums []int, queries [][]int) []int {
 	}
 	return result
 }
+
+func FibonacciNumber(n int) int {
+	if n < 0 {
+		return -1
+	}
+	fibs := []int{0, 1}
+	if n == 0 || n == 1 {
+		return fibs[n]
+	}
+	for x := 2; x <= n; x++ {
+		fibs = append(fibs, fibs[x-1]+fibs[x-2])
+	}
+	return fibs[n]
+}

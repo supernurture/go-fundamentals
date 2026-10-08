@@ -1,3 +1,7 @@
 # .gitattributes specifies behavior for files or folders.
 # One of its uses is to adjust line endings.
 * text=auto eol=lf
+*.gz binary
+*.jpg binary
+*.png binary
+*.zip binary

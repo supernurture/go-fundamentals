@@ -144,3 +144,18 @@ func FibonacciNumber(n int) int {
 	}
 	return fibs[n]
 }
+
+func ClimbingStairs(n int) int {
+	if n < 2 {
+		return 1
+	}
+
+	prev1 := 1
+	prev2 := 1
+	for x := 2; x <= n; x++ {
+		prev2 += prev1
+		prev1 = prev2 - prev1
+	}
+
+	return prev2
+}

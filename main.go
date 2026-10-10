@@ -112,6 +112,12 @@ func main() {
 	zg.Info().Int("Result", ex.FibonacciNumber(4)).Msg("Fibonacci Number")
 	zg.Info().Int("Result", ex.FibonacciNumber(10)).Msg("Fibonacci Number")
 	zg.Info().Int("Result", ex.FibonacciNumber(30)).Msg("Fibonacci Number")
+
+	fmt.Println("===================")
+	zg.Info().Int("Result", ex.ClimbingStairs(2)).Msg("Climbing Stairs")
+	zg.Info().Int("Result", ex.ClimbingStairs(3)).Msg("Climbing Stairs")
+	zg.Info().Int("Result", ex.ClimbingStairs(5)).Msg("Climbing Stairs")
+	zg.Info().Int("Result", ex.ClimbingStairs(10)).Msg("Climbing Stairs")
 }
 
 // go build 					- go-fundamentals.exe

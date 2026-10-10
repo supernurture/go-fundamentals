@@ -1,4 +1,5 @@
-package interfaces
+// itf stands for interface
+package itf
 
 import (
 	"fmt"

@@ -5,8 +5,8 @@ import (
 	"log"
 
 	"github.com/supernurture/go-fundamentals/internal/embed"
-	ex "github.com/supernurture/go-fundamentals/internal/exercises"
-	"github.com/supernurture/go-fundamentals/internal/interfaces"
+	ex "github.com/supernurture/go-fundamentals/internal/exercise"
+	"github.com/supernurture/go-fundamentals/internal/itf"
 
 	"github.com/rs/zerolog"
 	zg "github.com/rs/zerolog/log"
@@ -65,16 +65,16 @@ func main() {
 
 	fmt.Println("===================")
 	custBalance := 40000.00
-	xendit := interfaces.Xendit{}
-	midtrans := interfaces.Midtrans{}
+	xendit := itf.Xendit{}
+	midtrans := itf.Midtrans{}
 
-	if err := interfaces.Checkout(&xendit, &custBalance, 2000.00); err != nil {
+	if err := itf.Checkout(&xendit, &custBalance, 2000.00); err != nil {
 		zg.Err(err).Msg("checkout failed")
 	}
 
 	zg.Info().Float64("Balance", custBalance).Msg("The remaining Balance")
 
-	if err := interfaces.Checkout(&midtrans, &custBalance, 10000.00); err != nil {
+	if err := itf.Checkout(&midtrans, &custBalance, 10000.00); err != nil {
 		zg.Err(err).Msg("checkout failed")
 	}
 

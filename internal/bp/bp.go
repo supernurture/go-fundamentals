@@ -2,7 +2,11 @@
 // We must name our package using a single word and lowercase letters.
 package bp
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+	"strconv"
+)
 
 // We must follow standard naming conventions when naming our elements and packages.
 // Elements (variables, constants, interfaces, structs, and fields within structs).
@@ -12,25 +16,50 @@ import "fmt"
 // However, if we want to make it private, we must use a lowercase letter for the first character.
 // For example
 
-// Unexported
-var storyName string = "Happy"
+const (
+	// Unexported
+	pathURL = "..."
+	// Exported
+	PathURL = "..."
+)
+
+// For acronyms, we must use capital letters—for example, HTTP, API, URL, and so on.
+var (
+	// Unexported
+	httpAddr         = "..."
+	storyName string = "Story A"
+
+	// Exported
+	HTTPAddr        = "..."
+	BookName string = "Book A"
+)
 
 func publishStory(name string) {
 	fmt.Printf("The Story titled *%s* has been successfully published. \n", name)
 }
 
-// Exported
-var BookName string = "Grand Theft Auto VI"
-
 func PublishBook(name string) {
 	fmt.Printf("The Book titled *%s* has been successfully published. \n", name)
 }
 
-// For acronyms, we must use capital letters—for example, HTTP, API, URL, and so on.
-// For example
+// We're going to check the default behavior of fmt.Errorf.
+// We typically use it to add context to an error before passing it on to the next step.
+func CheckBehaviorFmtErrorf() error {
+	// Should produce an error
+	_, err := strconv.Atoi("abc")
+	if err != nil {
+		// fmt.Errorf can be used to add context to an error.
+		return fmt.Errorf("an error occurred while attempting to parse the string into a number: %w", err)
+	}
+	return nil
+}
 
-// Unexported
-var ftpURL = "..."
-
-// Exported
-var HTTPAddr = "..."
+// We're going to check the default behavior of errors.Join.
+// We typically use it to combine independent errors into one.
+func CheckBehaviorErrorJoin() error {
+	err := errors.New(
+		"1st error")
+	err2 := errors.New(
+		"2nd error")
+	return errors.Join(err, err2)
+}

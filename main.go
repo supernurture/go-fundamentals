@@ -118,6 +118,9 @@ func main() {
 	zg.Info().Int("Result", ex.ClimbingStairs(3)).Msg("Climbing Stairs")
 	zg.Info().Int("Result", ex.ClimbingStairs(5)).Msg("Climbing Stairs")
 	zg.Info().Int("Result", ex.ClimbingStairs(10)).Msg("Climbing Stairs")
+
+	fmt.Println("===================")
+	zg.Info().Ints("Result", ex.EvenNumberAndSort([]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10})).Msg("Even Number and Sort")
 }
 
 // go build 					- go-fundamentals.exe

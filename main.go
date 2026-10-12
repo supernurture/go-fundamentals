@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/supernurture/go-fundamentals/internal/bp"
 	"github.com/supernurture/go-fundamentals/internal/embed"
 	ex "github.com/supernurture/go-fundamentals/internal/exercise"
 	"github.com/supernurture/go-fundamentals/internal/itf"
@@ -121,6 +122,9 @@ func main() {
 
 	fmt.Println("===================")
 	zg.Info().Ints("Result", ex.EvenNumberAndSort([]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10})).Msg("Even Number and Sort")
+
+	zg.Error().Stack().Err(bp.CheckBehaviorFmtErrorf()).Msg("Test fmt.Errorf behavior")
+	zg.Error().Stack().Err(bp.CheckBehaviorErrorJoin()).Msg("Test fmt.Errorf behavior")
 }
 
 // go build 					- go-fundamentals.exe

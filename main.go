@@ -121,10 +121,14 @@ func main() {
 	zg.Info().Int("Result", ex.ClimbingStairs(10)).Msg("Climbing Stairs")
 
 	fmt.Println("===================")
-	zg.Info().Ints("Result", ex.EvenNumberAndSort([]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10})).Msg("Even Number and Sort")
+	zg.Info().Ints("Result", ex.EvenAndSortAsc([]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10})).Msg("Even Number and Sort")
+	zg.Info().Ints("Result", ex.OddAndSortDesc([]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10})).Msg("Even Number and Sort")
 
 	zg.Error().Stack().Err(bp.CheckBehaviorFmtErrorf()).Msg("Test fmt.Errorf behavior")
 	zg.Error().Stack().Err(bp.CheckBehaviorErrorJoin()).Msg("Test fmt.Errorf behavior")
+
+	zg.Info().Int("Result", ex.SumOfTwoNums(2, 4)).Msg("Sum Of Two Numbers")
+	zg.Info().Int("Result", ex.SumOfTwoNums(-2, -4)).Msg("Sum Of Two Numbers")
 }
 
 // go build 					- go-fundamentals.exe

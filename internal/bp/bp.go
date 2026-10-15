@@ -82,5 +82,6 @@ func srv() {
 			// 404 or something else
 			fmt.Println("invalid request")
 		}
+		fmt.Println("internal server error")
 	}
 }

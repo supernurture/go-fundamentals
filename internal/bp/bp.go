@@ -63,3 +63,24 @@ func CheckBehaviorErrorJoin() error {
 		"2nd error")
 	return errors.Join(err, err2)
 }
+
+// We can create pre-declared global error type as a representation of spesific condition.
+// The name of the global error type is sentinel error.
+// Standard naming convention of the error is var Err + (condition)
+var ErrUserNotFound = errors.New("can't find specified user")
+
+func getUserByID(id int) error {
+	fmt.Printf("failed getting user with id %d", id)
+	return ErrUserNotFound
+}
+
+func srv() {
+	err := getUserByID(10)
+	if err != nil {
+		if errors.Is(err, ErrUserNotFound) {
+			// We can return a relevant response to the requester.
+			// 404 or something else
+			fmt.Println("invalid request")
+		}
+	}
+}

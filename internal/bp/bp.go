@@ -64,24 +64,55 @@ func CheckBehaviorErrorJoin() error {
 	return errors.Join(err, err2)
 }
 
-// We can create pre-declared global error type as a representation of spesific condition.
-// The name of the global error type is sentinel error.
-// Standard naming convention of the error is var Err + (condition)
+// We can create globally declared error types to represent specific conditions.
+// These types of global errors are known as *sentinel errors*.
+// The standard naming convention for such errors is `var Err` + (condition).
 var ErrUserNotFound = errors.New("can't find specified user")
 
 func getUserByID(id int) error {
-	fmt.Printf("failed getting user with id %d", id)
+	fmt.Printf("failed getting user with ID=%d \n", id)
 	return ErrUserNotFound
 }
 
-func srv() {
+func Srv() {
 	err := getUserByID(10)
 	if err != nil {
 		if errors.Is(err, ErrUserNotFound) {
-			// We can return a relevant response to the requester.
-			// 404 or something else
+			// We can provide a relevant response to the requesting party.
+			// 404 or another response
 			fmt.Println("invalid request")
+			return
 		}
 		fmt.Println("internal server error")
+	}
+}
+
+// errors.As serves a different purpose than errors.Is.
+// errors.Is checks whether an error contains a target error within its layers.
+// errors.As extracts an error, allowing us to access its properties.
+type DatabaseError struct {
+	StatusCode int
+	Message    string
+}
+
+func (de *DatabaseError) Error() string {
+	return fmt.Sprintf("can't do database operation right now with status %d and a message %s", de.StatusCode, de.Message)
+}
+
+func getUserByName(name string) error {
+	fmt.Printf("an error occurred when trying to find user by name=%s \n", name)
+	return &DatabaseError{
+		StatusCode: 500,
+		Message:    "connection timeout",
+	}
+}
+
+func Srv2() {
+	err := getUserByName("Steven")
+	if err != nil {
+		var databaseErr *DatabaseError
+		errors.As(err, &databaseErr)
+
+		fmt.Printf("database error with status code=%d and message=%s", databaseErr.StatusCode, databaseErr.Message)
 	}
 }

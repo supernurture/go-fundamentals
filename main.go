@@ -129,6 +129,11 @@ func main() {
 
 	zg.Info().Int("Result", ex.SumOfTwoNums(2, 4)).Msg("Sum Of Two Numbers")
 	zg.Info().Int("Result", ex.SumOfTwoNums(-2, -4)).Msg("Sum Of Two Numbers")
+
+	fmt.Println("===================")
+
+	bp.Srv()
+	bp.Srv2()
 }
 
 // go build 					- go-fundamentals.exe

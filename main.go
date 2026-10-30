@@ -3,17 +3,25 @@ package main
 import (
 	"fmt"
 	"log"
+	"net/http"
 
 	"github.com/supernurture/go-fundamentals/internal/bp"
 	"github.com/supernurture/go-fundamentals/internal/embed"
 	ex "github.com/supernurture/go-fundamentals/internal/exercise"
 	"github.com/supernurture/go-fundamentals/internal/itf"
 
+	"github.com/gin-gonic/gin"
 	"github.com/rs/zerolog"
 	zg "github.com/rs/zerolog/log"
 )
 
 func main() {
+	// run service
+	err := run()
+	if err != nil {
+		panic(err)
+	}
+
 	fmt.Println(string(embed.Note))
 	fmt.Println(embed.HW)
 
@@ -142,3 +150,58 @@ func main() {
 // go build main.go 			- main.exe
 
 // -o stands for output. Name of the executable.
+
+const (
+	Mode = "debug" // test, debug, or release
+)
+
+func run() error {
+	gin.SetMode(Mode)
+	r := gin.Default()
+
+	group := r.Group("/api/v1")
+	r.GET("/health", func(ctx *gin.Context) {
+		ctx.JSON(http.StatusOK, gin.H{
+			"status":  http.StatusText(http.StatusOK),
+			"message": "UP",
+		})
+	})
+
+	group.GET("/users/:id", func(ctx *gin.Context) {
+		id := ctx.Param("id")
+		ctx.JSON(http.StatusOK, gin.H{
+			"status":  http.StatusText(http.StatusOK),
+			"message": fmt.Sprintf("successfully get user with id: %s", id),
+		})
+	})
+
+	group.GET("/users", func(ctx *gin.Context) {
+		name := ctx.DefaultQuery("name", "unknown")
+		ctx.JSON(http.StatusOK, gin.H{
+			"status":  http.StatusText(http.StatusOK),
+			"message": fmt.Sprintf("successfully get user with name: %s", name),
+		})
+	})
+
+	type Article struct {
+		Title  string `json:"title" binding:"required"`
+		Writer string `json:"writer"`
+	}
+
+	group.POST("/articles", func(ctx *gin.Context) {
+		var article Article
+		if err := ctx.ShouldBindJSON(&article); err != nil {
+			ctx.JSON(http.StatusBadRequest, gin.H{
+				"status": http.StatusText(http.StatusBadRequest),
+				"error":  err.Error(),
+			})
+			return
+		}
+		ctx.JSON(http.StatusCreated, gin.H{
+			"status":  http.StatusText(http.StatusCreated),
+			"message": fmt.Sprintf("successfully create a new article: %s", article.Title),
+		})
+	})
+
+	return r.Run()
+}
